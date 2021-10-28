@@ -6,6 +6,8 @@ import com.example.yingbang.result.ReturnResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Map;
+
 public class GetmovieController {
     @Autowired
     MovieDao movieDao;
@@ -17,7 +19,9 @@ public class GetmovieController {
             r=ReturnResult.getState(ResultCodeEnum.GET_MOVIE_ERROR);
         }
         if(r.getSuccess()){
-            r.data(movieDao.getMovieIndex(I));
+            Map<String, Object> map = null;
+            map.put("movie", movieDao.getMovieIndex(I));
+            r.data(map);
         }
         return r;
     }

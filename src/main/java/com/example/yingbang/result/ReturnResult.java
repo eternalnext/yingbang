@@ -17,7 +17,7 @@ public class ReturnResult{
     private Boolean success;
     private Integer code;
     private String message;
-    private String data = "";
+    private Map<String,Object> data=new HashMap<>();
     public static ReturnResult getState(ResultCodeEnum re){
         ReturnResult r=new ReturnResult();
         r.setSuccess(re.getSuccess());
@@ -25,9 +25,26 @@ public class ReturnResult{
         r.setMessage(re.getMessage());
         return r;
     }
+    /**
+     * 功能描述：单值设置数据
+     *
+     * @param key 键
+     * @param value 值
+     * @return R 返回给前端的数据
+     */
+    public ReturnResult data(String key, Object value){
+        this.data.put(key, value);
+        return this;
+    }
 
-    public ReturnResult data(String s){
-        this.setData(s);
+    /**
+     * 功能描述：多值设置数据
+     *
+     * @param map 集合
+     * @return R 返回给前端的数据
+     */
+    public ReturnResult data(Map<String, Object> map){
+        this.setData(map);
         return this;
     }
 }
