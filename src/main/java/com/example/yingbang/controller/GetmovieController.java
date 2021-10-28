@@ -5,23 +5,23 @@ import com.example.yingbang.result.ResultCodeEnum;
 import com.example.yingbang.result.ReturnResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
+@RestController
 public class GetmovieController {
     @Autowired
     MovieDao movieDao;
 
     @PostMapping("/getmoiveindex")
-    public ReturnResult getmoiveindex(int I){
+    public ReturnResult getmoiveindex(@RequestParam("index") Integer index){
         ReturnResult r=ReturnResult.getState(ResultCodeEnum.GET_MOVIE_SUCCESS);
-        if(movieDao.checkIndex() < I){
+        if(movieDao.checkIndex() < index){
             r=ReturnResult.getState(ResultCodeEnum.GET_MOVIE_ERROR);
         }
         if(r.getSuccess()){
-            Map<String, Object> map = null;
-            map.put("movie", movieDao.getMovieIndex(I));
-            r.data(map);
+            int temp = index - 1;
+            r.data("movie", movieDao.getMovieIndex(temp));
         }
         return r;
     }

@@ -17,5 +17,5 @@ public interface MovieDao {
     public int checkIndex();
     public int checkRegisterID(int id);
     public int addMovie(Movie movie);
-    public String getMovieIndex(int index);
+    public Movie getMovieIndex(int index);
 }

@@ -11,9 +11,9 @@
         SELECT count(*) FROM movie
         WHERE id=#{id};
     </select>
-    <select id="getMovieIndex" resultType="java.lang.Object">
+    <select id="getMovieIndex" resultType="com.example.yingbang.entity.Movie">
         SELECT * FROM movie
-        LIMIT #{index}-1,1;
+        LIMIT #{index},1;
     </select>
     <insert id="addMovie">
         insert into movie(id, rate, title, director, screenwriter, protagonist, type, country, language, initialReleaseDate, dateTime, alias)

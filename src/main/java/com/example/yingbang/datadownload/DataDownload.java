@@ -77,7 +77,11 @@ public class DataDownload {
                 String protagonist = "";
                 //获取导演名称
                 Element element = doc.select("div#info a[rel=v:directedBy]").first();
-                movie.setDirector(element.text());
+                if(element == null){
+                    movie.setDirector(protagonist);
+                }else {
+                    movie.setDirector(element.text());
+                }
                 //编辑
                 element = doc.select("#info").first();
                 String str = element.text();
